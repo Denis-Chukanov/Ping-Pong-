@@ -20,7 +20,16 @@ class GameSprite(pygame.sprite.Sprite):
     def update(self):
         window.blit(self.image, (self.rect.x, self.rect.y))
 
+class Player(GameSprite):
+    def __init__(self, x, y, w, h, image, speed,):
+        super().__init__( x, y, w, h, image, speed) 
 
+    def move(self, up, down):
+        k = pygame.key.get_pressed()
+        if k[up] and self.rect.y >= 0:
+            self.rect.y -= 5
+        if k[down] and (win_width - self.rect.y) >= self.rect.w:
+            self.rect.x y += 5
 
 game = True
 while game:
