@@ -58,11 +58,16 @@ player_pic = pygame.image.load('raketka.png')
 player1 = Player(0, 212, 70, 100, player_pic, 4)
 player2 = Player(630, 212, 70, 100, player_pic, 4)
 
+player1_score = 0
+player2_score = 0
+
 font = pygame.font.SysFont('Arial', 30)
 screen = 'game'
 game = True
 while game:
     if screen == 'game':
+        score = font.render('Score ' + str(player1_score) + ':' + str(player2_score), True, (255,0,0)) 
+        window.blit(score,(300,0)) 
         window.blit(back,(0,0))
         ball.update()
         ball.move()
@@ -73,8 +78,12 @@ while game:
         if ball.colide(player1) or ball.colide(player2):
             ball.x_form *= -1
         if ball.rect.x >= 700:
-            screen = "over1"
+            player1_score += 1
         if ball.rect.x <= 0:
+            player2_score += 1
+        if player1_score == 3:
+            screen = "over1"
+        if player2_score == 3:
             screen = 'over2'
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
