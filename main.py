@@ -6,7 +6,7 @@ pygame.init()
 
 win_width, win_height = 700, 500
 window = pygame.display.set_mode((win_width, win_height))
-
+pygame.display.set_caption("Пинг-понг")
 back = pygame.image.load('back.png')
 back = pygame.transform.scale(back, (win_width, win_height))
 
